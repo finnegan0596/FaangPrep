@@ -55,3 +55,24 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# IDE and OS
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary
+*.log
+*.tmp
+
+# Test and coverage
+coverage*/
+*.coverage
+*.coveragexml
