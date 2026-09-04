@@ -1,0 +1,16 @@
+Source: https://www.techinterview.net/blog/leetcode-patterns-to-ace-coding-interviews
+
+Two Pointers
+Sliding Window
+Fast & Slow Pointers (Floyd's Cycle)
+Merge Intervals
+Binary Search (on Answer Space)
+Top K Elements (Heap)
+BFS for Shortest Path, DFS for Exhaustive Search
+Dynamic Programming
+Monotonic Stack
+Trie (Prefix Tree)
+Union-Find (Disjoint Set Union)
+Backtracking
+Topological Sort
+Bit Manipulation

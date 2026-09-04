@@ -1,18 +1,21 @@
-using System;
-using System.Collections.Generic;
-
 namespace Problems
 {
+    // Description: return indices of the two numbers in nums such that they add up to target.
+    // Category: Pointers (ish), Hash Table
+    // Implementation:
+    // Use a dictionary to store the numbers and their indices.
+    // While building dictionary, for each number, check if the complement (target - current number) exists in the dictionary.
+    // If it does, return the indices.
     public class LeetCode1_TwoSum
     {
         public int[] TwoSum(int[] nums, int target)
         {
-            var dict = new Dictionary<int,int>();
-            for (int i=0;i<nums.Length;i++)
+            var dict = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
             {
                 int complement = target - nums[i];
                 if (dict.TryGetValue(complement, out int idx))
-                    return new [] { idx, i };
+                    return new[] { idx, i };
                 dict[nums[i]] = i;
             }
             return Array.Empty<int>();
@@ -20,8 +23,8 @@ namespace Problems
 
         public string Run()
         {
-            var nums = new[] {2,7,11,15};
-            var res = TwoSum(nums,9);
+            var nums = new int[] { 3, 2, 4 };
+            var res = TwoSum(nums, 6);
             return $"[{string.Join(',',res)}]";
         }
 
