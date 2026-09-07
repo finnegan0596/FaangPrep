@@ -1,5 +1,14 @@
 namespace Problems
 {
+    // Description: return sum of two numbers represented in reverse order in a linkedlist,
+    // as a total represented in reverse order in a linked list
+    // Category: LinkedList (not really one of the listed topics in techinterview article)
+    // Implementation:
+    // First attempt used strings, big integers and math.pow but was inefficient
+    // More efficient, simply add two numbers and insert total into node.
+    // Then, if necessary, simply carry the one two the following node
+    // Keep going until there are no more nodes or carried 1s
+
     public class ListNode
     {
         public int val;
@@ -13,52 +22,21 @@ namespace Problems
 
     public class Solution
     {
-        public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        public ListNode AddTwoNumbers(ListNode l1, ListNode l2, int carry = 0)
         {
-            var total = getListNodeTotal(l1) + getListNodeTotal(l2);
-            return getListNodeFromTotal(total);
-        }
 
-        private System.Numerics.BigInteger getListNodeTotal(ListNode l1, int power = 0)
-        {
-            var val = new System.Numerics.BigInteger(l1.val);
-            var mult = System.Numerics.BigInteger.Pow(
-                new System.Numerics.BigInteger(10),
-                power);
+            var total = (l1?.val ?? 0) + (l2?.val ?? 0) + carry;
+            carry = total / 10;
+            total = total % 10;
 
-            var total = val * mult;
+            var node = new ListNode(total);
 
-            if (l1.next == null)
-            {
-                return total;
-            }
-
-            total += getListNodeTotal(l1.next, power + 1);
-            return total;
-        }
-
-        private ListNode getListNodeFromTotal(System.Numerics.BigInteger total)
-        {
-            var numberString = total.ToString();
-            return getListNodeFromTotalString(numberString);
-        }
-
-        private ListNode getListNodeFromTotalString(string total)
-        {
-            var lastChar = total.Last();
-            var last = int.Parse(lastChar.ToString());
-
-            var node = new ListNode(last);
-
-            if (total.Length == 1)
+            if (carry == 0 && l1?.next == null && l2?.next == null)
             {
                 return node;
             }
 
-            var substr = total.Substring(0, total.Length - 1);
-
-            node.next = getListNodeFromTotalString(substr!);
-
+            node.next = AddTwoNumbers(l1?.next, l2?.next, carry);
             return node;
         }
     }
